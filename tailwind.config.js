@@ -7,7 +7,12 @@ module.exports = {
   ],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        jost: ["Jost-Light", "sans-serif"],
+        dmSans: ["DM Sans", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
