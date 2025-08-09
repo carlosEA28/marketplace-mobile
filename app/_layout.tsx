@@ -4,7 +4,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "./global.css";
 
-// Set the animation options. This is optional.
 SplashScreen.setOptions({
   duration: 1000,
   fade: true,
@@ -27,5 +26,11 @@ export default function RootLayout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
+  );
 }
