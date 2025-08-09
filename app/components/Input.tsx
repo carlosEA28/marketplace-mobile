@@ -27,7 +27,7 @@ const Input = ({
         rules={rules}
         render={({ field }) => (
           <TextInput
-            className="w-full h-16 border  "
+            className="w-full h-16 border-b border-b-[#949494] placeholder:text-[#949494] text-base"
             placeholder={placeholder}
             onChangeText={field.onChange}
             value={field.value}
