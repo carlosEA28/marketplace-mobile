@@ -4,9 +4,9 @@ import { ArrowRight, KeyRound, Mail } from "lucide-react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
-import Button from "../components/button";
-import Input from "../components/Input";
-import { LoginFormData, LoginFormSchema } from "../schemas/user";
+import Button from "../../components/button";
+import Input from "../../components/Input";
+import { LoginFormData, LoginFormSchema } from "../../schemas/user";
 const logoApp = require("@/assets/images/LogoApp.png");
 
 const Login = () => {
