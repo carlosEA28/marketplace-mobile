@@ -1,37 +1,29 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { KeyboardTypeOptions, Text, TextInput, View } from "react-native";
+import { Text, TextInput, TextInputProps, View } from "react-native";
 
-interface InputProps {
+//passando custom props mais as props nativas do textInput
+type InputProps = {
   name: string;
   control: any;
   placeholder?: string;
   rules?: object;
   error?: string;
-  keyboardTypes: KeyboardTypeOptions;
-}
+} & TextInputProps;
 
-const Input = ({
-  name,
-  control,
-  placeholder,
-  rules,
-  error,
-  keyboardTypes,
-}: InputProps) => {
+const Input = ({ name, control, rules, error, ...inputProps }: InputProps) => {
   return (
-    <View>
+    <View className="flex flex-1 ">
       <Controller
         control={control}
         name={name}
         rules={rules}
         render={({ field }) => (
           <TextInput
-            className="w-full h-16 border-b border-b-[#949494] placeholder:text-[#949494] text-base"
-            placeholder={placeholder}
-            onChangeText={field.onChange}
+            className="w-full h-16 placeholder:text-[#949494] text-base"
             value={field.value}
-            keyboardType={keyboardTypes}
+            onChangeText={field.onChange}
+            {...inputProps}
           />
         )}
       />
