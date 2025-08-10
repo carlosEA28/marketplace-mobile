@@ -30,6 +30,8 @@ export default function RootLayout() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="/" />
+      <Stack.Screen name="cadastro" />
       <Stack.Screen name="login/index" />
     </Stack>
   );

@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "expo-router";
 import { ArrowRight, KeyRound, Mail } from "lucide-react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -6,7 +7,6 @@ import { Image, Text, View } from "react-native";
 import Button from "../components/button";
 import Input from "../components/Input";
 import { LoginFormData, LoginFormSchema } from "../schemas/user";
-
 const logoApp = require("@/assets/images/LogoApp.png");
 
 const Login = () => {
@@ -17,6 +17,10 @@ const Login = () => {
       password: "",
     },
   });
+
+  const onSubmit = (data: LoginFormData) => {
+    console.log(data);
+  };
 
   return (
     <View className="flex w-screen h-screen items-center gap-16 justify-center ">
@@ -38,8 +42,7 @@ const Login = () => {
             {/* E-mail */}
             <View>
               <Text className="text-[#666666] text-base">E-MAIL</Text>
-              <View className="flex flex-row items-center w-full gap-1 border-b border-b-[#949494]">
-                <Mail color={"#949494"} size={21} />
+              <View className="flex flex-row items-center w-full gap-1">
                 <Input
                   placeholder="mail@exemplo.br"
                   control={control}
@@ -47,15 +50,16 @@ const Login = () => {
                   keyboardType="email-address"
                   error={formState.errors.email?.message}
                   secureTextEntry={false}
-                />
+                >
+                  <Mail color={"#949494"} size={21} />
+                </Input>
               </View>
             </View>
 
             {/* Senha */}
             <View>
               <Text className="text-[#666666] text-base">SENHA</Text>
-              <View className="flex flex-row items-center gap-1 border-b border-b-[#949494]">
-                <KeyRound color={"#949494"} size={21} />
+              <View className="flex flex-row items-center gap-1 ">
                 <Input
                   placeholder="Sua senha"
                   control={control}
@@ -63,25 +67,33 @@ const Login = () => {
                   keyboardType="visible-password"
                   error={formState.errors.password?.message}
                   secureTextEntry={true}
-                />
+                >
+                  <KeyRound color={"#949494"} size={21} />
+                </Input>
               </View>
             </View>
           </View>
 
           {/* Botão acessar */}
-          <Button text="Acessar">
+          <Button
+            text="Acessar"
+            variant="default"
+            onPress={handleSubmit(onSubmit)}
+          >
             <ArrowRight size={18} color={"#fff"} />
           </Button>
         </View>
 
         {/* Cadastro */}
-        <View className="flex justify-center gap-5 mt-[160px]">
+        <View className="flex justify-center gap-5  mt-[160px]">
           <Text className="text-[#666666] text-lg">
             Ainda não tem uma conta?
           </Text>
-          <Button text="Cadastrar">
-            <ArrowRight size={18} color={"#F24D0D"} />
-          </Button>
+          <Link href={"/cadastro"} asChild>
+            <Button text="Cadastrar" variant="ghost">
+              <ArrowRight size={18} color={"#F24D0D"} />
+            </Button>
+          </Link>
         </View>
       </View>
     </View>

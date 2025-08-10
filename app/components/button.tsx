@@ -6,16 +6,37 @@ import {
   View,
 } from "react-native";
 
+import { cva } from "class-variance-authority";
+
 type ButtonCustomProps = {
   children?: ReactNode;
-  text: string;
+  text?: string;
 } & TouchableOpacityProps;
 
-const Button = ({ children, text }: ButtonCustomProps) => {
+const buttonVariants = cva(
+  "flex flex-row  items-center justify-between p-4 w-full h-14 rounded-xl",
+  {
+    variants: {
+      variant: {
+        default: "bg-[#F24D0D] text-white",
+        ghost: "bg-transparent border  border-[#F24D0D]",
+      },
+    },
+  }
+);
+
+const Button = ({
+  children,
+  text,
+  variant,
+  ...rest
+}: ButtonCustomProps & { variant: "default" | "ghost" }) => {
   return (
-    <View>
-      <TouchableOpacity className="flex flex-row  items-center justify-between p-5 w-full h-14 bg-[#F24D0D] rounded-xl">
-        <Text className="text-white">{text}</Text>
+    <View className="w-full ">
+      <TouchableOpacity className={buttonVariants({ variant })} {...rest}>
+        <Text className={variant === "ghost" ? "text-[#F24D0D]" : "text-white"}>
+          {text}
+        </Text>
         {children}
       </TouchableOpacity>
     </View>
